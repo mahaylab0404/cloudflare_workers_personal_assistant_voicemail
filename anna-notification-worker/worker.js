@@ -101,6 +101,10 @@ function formatNotificationEmail(body) {
           <td style="padding:8px 12px;color:#2c3e50;">${body.caller_phone || "Not provided"}</td>
         </tr>
         <tr>
+          <td style="padding:8px 12px;font-weight:600;color:#555;">Email</td>
+          <td style="padding:8px 12px;color:#2c3e50;">${body.caller_email || "Not provided"}</td>
+        </tr>
+        <tr>
           <td style="padding:8px 12px;font-weight:600;color:#555;">Reason</td>
           <td style="padding:8px 12px;color:#2c3e50;">${body.reason || "Not specified"}</td>
         </tr>
