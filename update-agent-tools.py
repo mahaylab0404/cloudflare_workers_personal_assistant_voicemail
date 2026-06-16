@@ -11,7 +11,7 @@ import json
 import urllib.request
 
 AGENT_ID     = "agent_1001kv76d3gbfhctn4pjq20y1b0y"
-ELEVENLABS_KEY = "sk_8511d59546e344dd47d0674fb2d97387b130055e9e55cec4"
+ELEVENLABS_KEY = "sk_40964e12f2176d219967ce19be5b73e0894231cf50f4f746"
 
 def patch_agent(payload: dict) -> dict:
     data = json.dumps(payload).encode()
