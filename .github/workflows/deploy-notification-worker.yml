@@ -19,11 +19,3 @@ jobs:
           apiToken: ${{ secrets.CF_API_TOKEN }}
           accountId: "61dd8de53dcc6ea9ba7fab9c9581564d"
           workingDirectory: anna-notification-worker
-          secrets: |
-            GOOGLE_CLIENT_ID
-            GOOGLE_CLIENT_SECRET
-            GOOGLE_REFRESH_TOKEN
-        env:
-          GOOGLE_CLIENT_ID: ${{ secrets.GOOGLE_CLIENT_ID }}
-          GOOGLE_CLIENT_SECRET: ${{ secrets.GOOGLE_CLIENT_SECRET }}
-          GOOGLE_REFRESH_TOKEN: ${{ secrets.GOOGLE_REFRESH_TOKEN }}
