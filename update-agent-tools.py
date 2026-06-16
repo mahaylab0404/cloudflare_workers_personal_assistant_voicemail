@@ -83,6 +83,10 @@ def main():
                             "type":        "string",
                             "description": "The caller's phone number.",
                         },
+                        "caller_email": {
+                            "type":        "string",
+                            "description": "The caller's email address, if provided.",
+                        },
                         "reason": {
                             "type":        "string",
                             "description": "Brief reason for the callback.",

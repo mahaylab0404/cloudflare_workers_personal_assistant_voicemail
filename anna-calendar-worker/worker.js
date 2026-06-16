@@ -166,6 +166,7 @@ async function bookEvent(env, body) {
     description: [
       `Caller: ${body.caller_name || "Unknown"}`,
       `Phone: ${body.caller_phone || "Not provided"}`,
+      `Email: ${body.caller_email || "Not provided"}`,
       `Reason: ${body.reason || "Not specified"}`,
       "",
       "Booked by Anna (personal assistant agent)",
