@@ -31,8 +31,8 @@ def patch_agent(payload: dict) -> dict:
 def main():
     subdomain = input("Enter your Cloudflare Workers subdomain (e.g. 'myname' if workers are at myname.workers.dev): ").strip()
 
-    cal_base  = f"https://anna-calendar-worker.{subdomain}.workers.dev"
-    notif_url = f"https://anna-notification-worker.{subdomain}.workers.dev/send-notification"
+    cal_base  = f"https://anna-worker.{subdomain}.workers.dev"
+    notif_url = f"https://anna-worker.{subdomain}.workers.dev/send-notification"
 
     tools = [
         {

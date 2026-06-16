@@ -1,0 +1,28 @@
+name = "anna-worker"
+main = "worker.js"
+compatibility_date = "2025-01-01"
+account_id = "61dd8de53dcc6ea9ba7fab9c9581564d"
+
+[vars]
+CALENDAR_ID        = "admin@zuldeira.com"
+NOTIFICATION_EMAIL = "mahaylabalentine04@gmail.com"
+
+# Set these secrets in Cloudflare dashboard → Worker → Settings → Variables → Secrets:
+#   GOOGLE_CLIENT_ID
+#   GOOGLE_CLIENT_SECRET
+#   GOOGLE_REFRESH_TOKEN
+
+[observability]
+enabled = false
+head_sampling_rate = 1
+
+[observability.logs]
+enabled = true
+head_sampling_rate = 1
+persist = true
+invocation_logs = true
+
+[observability.traces]
+enabled = true
+persist = true
+head_sampling_rate = 1
