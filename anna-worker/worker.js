@@ -159,7 +159,13 @@ async function bookEvent(env, body) {
   const token      = await getAccessToken(env);
   const calendarId = env.CALENDAR_ID || "admin@zuldeira.com";
 
-  const eventStart = new Date(body.datetime);
+  // Normalize datetime — if no offset provided assume ET (-04:00 EDT / -05:00 EST)
+  let datetimeStr = body.datetime || "";
+  if (datetimeStr && !datetimeStr.includes("+") && !datetimeStr.match(/-\d{2}:\d{2}$/)) {
+    datetimeStr = datetimeStr.replace("Z", "") + "-04:00";
+  }
+
+  const eventStart = new Date(datetimeStr);
   const now        = new Date();
   const minTime    = new Date(now.getTime() + 24 * 60 * 60 * 1000);
 
@@ -168,6 +174,12 @@ async function bookEvent(env, body) {
   }
 
   const eventEnd = new Date(eventStart.getTime() + 30 * 60 * 1000);
+
+  // Format datetime strings with ET offset for Google Calendar
+  const formatET = (date) => {
+    const iso = date.toISOString().replace("Z", "");
+    return iso + "-04:00";
+  };
 
   const event = {
     summary: `Callback: ${body.caller_name || "Unknown"}`,
@@ -179,8 +191,8 @@ async function bookEvent(env, body) {
       "",
       "Booked by Anna (personal assistant agent)",
     ].join("\n"),
-    start: { dateTime: eventStart.toISOString(), timeZone: "America/New_York" },
-    end:   { dateTime: eventEnd.toISOString(),   timeZone: "America/New_York" },
+    start: { dateTime: formatET(eventStart), timeZone: "America/New_York" },
+    end:   { dateTime: formatET(eventEnd),   timeZone: "America/New_York" },
     reminders: {
       useDefault: false,
       overrides:  [{ method: "popup", minutes: 30 }],
