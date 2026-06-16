@@ -1,0 +1,29 @@
+name: Deploy Calendar Worker
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "anna-calendar-worker/**"
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    name: Deploy anna-calendar-worker to Cloudflare
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Deploy to Cloudflare Workers
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CF_API_TOKEN }}
+          accountId: "61dd8de53dcc6ea9ba7fab9c9581564d"
+          workingDirectory: anna-calendar-worker
+          secrets: |
+            GOOGLE_CLIENT_ID
+            GOOGLE_CLIENT_SECRET
+            GOOGLE_REFRESH_TOKEN
+        env:
+          GOOGLE_CLIENT_ID: ${{ secrets.GOOGLE_CLIENT_ID }}
+          GOOGLE_CLIENT_SECRET: ${{ secrets.GOOGLE_CLIENT_SECRET }}
+          GOOGLE_REFRESH_TOKEN: ${{ secrets.GOOGLE_REFRESH_TOKEN }}
